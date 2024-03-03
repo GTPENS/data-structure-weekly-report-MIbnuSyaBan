@@ -1,67 +1,93 @@
 {
-  "version": "0.2.0",
-    
-  "configurations": [
-    {
-      "name": "(gdb) Launch",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${fileDirname}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "miDebuggerPath": "C:\\msys64\\clang64\\bin\\gdb.exe",
-      "setupCommands": [
+    "version": "0.2.0",
+    "configurations": [
+        
         {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\msys64\\clang64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
         },
         {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ]
-    },
-    {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "cppvsdbg",
-      "request": "launch",
-      "args": [],
-      "stopAtEntry": false,
-      "console": "externalTerminal",
-      "cwd": "c:/VsCode/Struct",
-      "program": "c:/VsCode/Struct/build/Debug/outDebug"
-    },
-    {
-      "name": "C/C++: g++.exe build and debug active file",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "C:/msys64/clang64/bin",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "miDebuggerPath": "C:\\msys64\\clang64\\bin\\gdb.exe",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
+            "name": "C/C++ Runner: Debug Session",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "args": [],
+            "stopAtEntry": false,
+            "console": "externalTerminal",
+            "cwd": "c:/Users/mibnu/OneDrive/Dokumen/GitHub/data-structure-weekly-report-MIbnuSyaBan/Tugas/Gerobak Fried Chicken",
+            "program": "c:/Users/mibnu/OneDrive/Dokumen/GitHub/data-structure-weekly-report-MIbnuSyaBan/Tugas/Gerobak Fried Chicken/build/Debug/outDebug"
         },
         {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
+            "name": "C/C++: g++.exe build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "C:/msys64/clang64/bin",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\msys64\\clang64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: g++.exe build active file"
+        },
+        {
+            "name": "C/C++: clang++.exe build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "miDebuggerPath": "C:\\msys64\\clang64\\bin\\lldb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: clang++.exe build active file"
         }
-      ],
-      "preLaunchTask": "C/C++: g++.exe build active file"
-    }
-  ]
+    ]
 }
