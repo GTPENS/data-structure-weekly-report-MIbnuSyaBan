@@ -118,6 +118,7 @@
     "numbers": "cpp",
     "stdexcept": "cpp",
     "typeinfo": "cpp",
-    "iomanip": "cpp"
+    "iomanip": "cpp",
+    "ctime": "cpp"
   }
 }
