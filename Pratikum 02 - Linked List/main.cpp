@@ -1,5 +1,16 @@
+/*
+Single Linked List Pratikum 02
+    keterangan fungsi yang di pakai :
+    createNode          : Membuat Simpul baru 
+    insertNodeAtHead    : Akan memanggil CreateNode dan menyisipkan simpul baru ke Head
+    insertNodeAtTail    : Akan memanggil CreateNode dan menyisipkan simpul baru ke Tail
+    printList           : Menampilkan semua simpul 
+    searchNode          : Mencari simpul berdasarkan variable pertama 
+    stringToInterger    : Mengkonversi tipe data string ke integer menggunakan stoi untuk menghindari error 
+*/
 #include <iostream>
 using namespace std;
+
 struct Node {
     int data;
     Node* next;
