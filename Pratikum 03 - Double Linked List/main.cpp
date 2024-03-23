@@ -1,34 +1,33 @@
-/*
-Single Linked List Pratikum 02
-    keterangan fungsi yang di pakai :
-    createNode          : Membuat Simpul baru 
-    insertNodeAtHead    : Akan memanggil CreateNode dan menyisipkan simpul baru ke Head
-    insertNodeAtTail    : Akan memanggil CreateNode dan menyisipkan simpul baru ke Tail
-    printList           : Menampilkan semua simpul 
-    searchNode          : Mencari simpul berdasarkan variable pertama 
-    stringToInterger    : Mengkonversi tipe data string ke integer menggunakan stoi untuk menghindari error 
-*/
+
 #include <iostream>
 using namespace std;
 
 struct Node {
     int data;
+    Node* prev;
     Node* next;
+    ~Node (){
+        cout << "delete " << data;
+    }
 };
-
+// membuat node baru
 Node* createNode(int data){
     Node* newNode = new Node;
     newNode->data = data;
+    newNode->prev = NULL;
     newNode->next = NULL;  
     return newNode;
 }
-
+// menyisipkan node di head 
 void insertNodeAtHead(Node** head, int data){
     Node* newNode = createNode(data);
     newNode->next = *head;
+    if(*head != NULL){
+        (*head)->prev = newNode;
+    }
     *head = newNode;
 }
-
+//menyisipkan node di tail
 void insertNodeAtTail(Node** head, int data){
     Node* newNode = createNode(data);
     if(*head == NULL){
@@ -39,10 +38,11 @@ void insertNodeAtTail(Node** head, int data){
         while(temp->next != NULL){
             temp = temp->next;          
         }
-        temp->next = newNode;      
+        temp->next = newNode;
+        newNode->prev = temp;      
     }
 }
-
+// mencari node berdasarkan value data
 Node* searchNode(Node* head, int data){
     Node* temp = head;
     while(temp != NULL){
@@ -53,7 +53,23 @@ Node* searchNode(Node* head, int data){
     }
     return NULL;
 }
+// menghapus node berdsasarkan value data
+void deleteNode(Node** head, int data){
+    Node* temp = searchNode(*head, data);
+    if(temp == NULL) return; // Node tidak ditemukan
 
+    if(temp->prev != NULL){
+        temp->prev->next = temp->next;
+    } else {
+        // Menghapus node paling depan
+        *head = temp->next;
+    }
+    if(temp->next != NULL){
+        temp->next->prev = temp->prev;
+    }
+    delete temp;// Membebaskan memory 
+}
+// menampilkan semua node
 void printList(Node* head){
     Node* temp = head;
     while(temp != NULL){
@@ -62,6 +78,7 @@ void printList(Node* head){
     }
     cout << endl;
 }
+// Mengkonversi tipe data string ke integer menggunakan stoi untuk menghindari error 
 int stringToInteger(){
     int i;
     string s;
@@ -69,18 +86,16 @@ int stringToInteger(){
     do{
         loop = false;
         try {
-        cin >> s;
-        i = stoi(s);
-        
-    } catch (invalid_argument& e) {
-        cout << "\ntidak sesuai format" << endl;
-        cout << "Masukkan data lagi : ";
-        loop = true;
-    }
+            cin >> s;
+            i = stoi(s);
+        } catch (invalid_argument& e) {
+            cout << "\ntidak sesuai format" << endl;
+            cout << "Masukkan data lagi : ";
+            loop = true;
+        }
     }while(loop);
     return i;
 }
-
 //Membebaskan memory semua node
 void freeList(Node** head){
     Node* temp = *head;
@@ -91,11 +106,12 @@ void freeList(Node** head){
     }
     *head = NULL;
 }
+
 int main() {
     Node* head = NULL;
     int choice, data;
     while(true){
-        cout << "Menu:\n1. Menyisipkan sebagai simpul ujung tawal \n2. Menyisipkan sebagai simpul terakhir\n3. Mencari sebuah simpul tertentu\n4. Menampilkan data\n5. Keluar\n";
+        cout << "Menu:\n1. Menyisipkan sebagai simpul ujung awal\n2. Menyisipkan sebagai simpul terakhir\n3. Mencari sebuah simpul tertentu\n4. Menghapus simpul tertentu\n5. Menampilkan data\n6. Keluar\n";
         cout << "Pilihan : ";
         choice = stringToInteger();
         switch(choice){
@@ -114,25 +130,29 @@ int main() {
                 data = stringToInteger();
                 if (head){
                     if(searchNode(head, data)){
-                    cout << "Data ditemukan\n";
+                        cout << "Data ditemukan\n";
                     } else {
                         cout << "Data tidak ditemukan\n";
                     } 
-                    break;
-                }
-                else {
+                } else {
                     cout << "Data kosong\n";
                 }
-                
+                break;
             case 4:
+                cout << "Masukkan data yang akan dihapus : ";
+                data = stringToInteger();
+                deleteNode(&head, data);
+                break;
+            case 5:
                 if(head) printList(head);
                 else cout << "Data kosong\n";
                 break;
-            case 5:
-                freeList(&head);// Membebaskan memeory dari semua node yang telah dibuat
-                return 0;
+            case 6:
+               freeList(&head);// Membebaskan memeory dari semua node yang telah dibuat
+               return 0;
             default:
                 cout << "Pilihan tidak diketahui\n";
         }
     }
+    
 }
