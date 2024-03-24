@@ -129,7 +129,8 @@ int main() {
                 cout << "Masukkan data yang dicari : ";
                 data = stringToInteger();
                 if (head){
-                    if(searchNode(head, data)){
+                    if (head->data = data) cout << "Data ditemukan\n";
+                    else if(searchNode(head, data)){
                         cout << "Data ditemukan\n";
                     } else {
                         cout << "Data tidak ditemukan\n";
